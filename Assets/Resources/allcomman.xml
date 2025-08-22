@@ -1,0 +1,15 @@
+<!--   AdIn contains the deails of Ad in pages
+1- ShowMenuAd 2-LevelSelection 3-Upgrade 4-LevelComplete 5-PreLevelFail 6-LevelFail
+RotationType 1->Ironsource 2->Admob 3->Unity
+**Dont Give Empty values-->
+<GameData>
+<Version levelxmlversion="1.0" gameversion="1.0"/>
+<Desc RateDesc="How Many stars you want to give ? " ShareDesc="Share And Get 100 Coins"/>
+<PopUpLvls RateInLvls="3_9_21" ShareInLvls="6_13_19"/>
+<Coins RateCoins="0" ShareCoins="100"/>
+<DiscountPop Menu="3_7" UPLS="4_4"/>
+<Addelay Addelay="60" lcaddelay="2.2" lfaddelay="2" prelfdelay="1" upldelay="1"/>
+<AdType RotationType="1_2_3" RotationRewardType="1_2_3"/>
+<AdIn pages="1_0_0_4_0_6"/>
+
+</GameData>

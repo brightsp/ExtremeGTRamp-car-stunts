@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "100209219468",
+    "firebase_url": "https://megaramp2020.firebaseio.com",
+    "project_id": "megaramp2020",
+    "storage_bucket": "megaramp2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100209219468:android:97ae8d241ae33b36cde8a9",
+        "android_client_info": {
+          "package_name": "com.eightggames.megaramp2020"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100209219468-bsmn4i95k5t2l4q3evg8g9qg5pqf7nig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR7xwY-dvFFX1r4y596irAr2etMnIdrTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100209219468-bsmn4i95k5t2l4q3evg8g9qg5pqf7nig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

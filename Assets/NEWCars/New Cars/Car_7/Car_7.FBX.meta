@@ -1,0 +1,351 @@
+fileFormatVersion: 2
+guid: 2c0cda498aa100b4aa71b00200654473
+timeCreated: 1548672436
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: back bumper
+    100002: back matriculation
+    100004: bglass
+    100006: bodywork
+    100008: //RootNode
+    100010: cavity
+    100012: dashboard
+    100014: door handle
+    100016: door1
+    100018: door2
+    100020: door3
+    100022: door4
+    100024: Dummy01
+    100026: fglass
+    100028: front bumper
+    100030: glasframe01
+    100032: glasframe02
+    100034: glass frame
+    100036: glass frame01
+    100038: glass1
+    100040: glass2
+    100042: glass3
+    100044: glass4
+    100046: glass5
+    100048: glass6
+    100050: glass7
+    100052: glass8
+    100054: glassframe
+    100056: grille
+    100058: grille2
+    100060: headlight009
+    100062: headlight2
+    100064: headlight3
+    100066: headlight4
+    100068: headlight5
+    100070: headlight6
+    100072: headlight7
+    100074: headlight8
+    100076: hglass010
+    100078: hglass1
+    100080: hglass2
+    100082: hglass3
+    100084: hglass4
+    100086: hglass5
+    100088: hglass6
+    100090: hglass7
+    100092: hglass9
+    100094: hood
+    100096: object03
+    100098: object04
+    100100: object1
+    100102: object2
+    100104: seat1
+    100106: steering wheel1
+    100108: undercar
+    100110: window cleaner
+    400000: back bumper
+    400002: back matriculation
+    400004: bglass
+    400006: bodywork
+    400008: //RootNode
+    400010: cavity
+    400012: dashboard
+    400014: door handle
+    400016: door1
+    400018: door2
+    400020: door3
+    400022: door4
+    400024: Dummy01
+    400026: fglass
+    400028: front bumper
+    400030: glasframe01
+    400032: glasframe02
+    400034: glass frame
+    400036: glass frame01
+    400038: glass1
+    400040: glass2
+    400042: glass3
+    400044: glass4
+    400046: glass5
+    400048: glass6
+    400050: glass7
+    400052: glass8
+    400054: glassframe
+    400056: grille
+    400058: grille2
+    400060: headlight009
+    400062: headlight2
+    400064: headlight3
+    400066: headlight4
+    400068: headlight5
+    400070: headlight6
+    400072: headlight7
+    400074: headlight8
+    400076: hglass010
+    400078: hglass1
+    400080: hglass2
+    400082: hglass3
+    400084: hglass4
+    400086: hglass5
+    400088: hglass6
+    400090: hglass7
+    400092: hglass9
+    400094: hood
+    400096: object03
+    400098: object04
+    400100: object1
+    400102: object2
+    400104: seat1
+    400106: steering wheel1
+    400108: undercar
+    400110: window cleaner
+    2300000: back bumper
+    2300002: back matriculation
+    2300004: bglass
+    2300006: bodywork
+    2300008: cavity
+    2300010: dashboard
+    2300012: door handle
+    2300014: door1
+    2300016: door2
+    2300018: door3
+    2300020: door4
+    2300022: fglass
+    2300024: front bumper
+    2300026: glasframe01
+    2300028: glasframe02
+    2300030: glass frame
+    2300032: glass frame01
+    2300034: glass1
+    2300036: glass2
+    2300038: glass3
+    2300040: glass4
+    2300042: glass5
+    2300044: glass6
+    2300046: glass7
+    2300048: glass8
+    2300050: glassframe
+    2300052: grille
+    2300054: grille2
+    2300056: headlight009
+    2300058: headlight2
+    2300060: headlight3
+    2300062: headlight4
+    2300064: headlight5
+    2300066: headlight6
+    2300068: headlight7
+    2300070: headlight8
+    2300072: hglass010
+    2300074: hglass1
+    2300076: hglass2
+    2300078: hglass3
+    2300080: hglass4
+    2300082: hglass5
+    2300084: hglass6
+    2300086: hglass7
+    2300088: hglass9
+    2300090: hood
+    2300092: object03
+    2300094: object04
+    2300096: object1
+    2300098: object2
+    2300100: seat1
+    2300102: steering wheel1
+    2300104: undercar
+    2300106: window cleaner
+    3300000: back bumper
+    3300002: back matriculation
+    3300004: bglass
+    3300006: bodywork
+    3300008: cavity
+    3300010: dashboard
+    3300012: door handle
+    3300014: door1
+    3300016: door2
+    3300018: door3
+    3300020: door4
+    3300022: fglass
+    3300024: front bumper
+    3300026: glasframe01
+    3300028: glasframe02
+    3300030: glass frame
+    3300032: glass frame01
+    3300034: glass1
+    3300036: glass2
+    3300038: glass3
+    3300040: glass4
+    3300042: glass5
+    3300044: glass6
+    3300046: glass7
+    3300048: glass8
+    3300050: glassframe
+    3300052: grille
+    3300054: grille2
+    3300056: headlight009
+    3300058: headlight2
+    3300060: headlight3
+    3300062: headlight4
+    3300064: headlight5
+    3300066: headlight6
+    3300068: headlight7
+    3300070: headlight8
+    3300072: hglass010
+    3300074: hglass1
+    3300076: hglass2
+    3300078: hglass3
+    3300080: hglass4
+    3300082: hglass5
+    3300084: hglass6
+    3300086: hglass7
+    3300088: hglass9
+    3300090: hood
+    3300092: object03
+    3300094: object04
+    3300096: object1
+    3300098: object2
+    3300100: seat1
+    3300102: steering wheel1
+    3300104: undercar
+    3300106: window cleaner
+    4300000: back bumper
+    4300002: back matriculation
+    4300004: bglass
+    4300006: bodywork
+    4300008: cavity
+    4300010: dashboard
+    4300012: door handle
+    4300014: door1
+    4300016: door2
+    4300018: door3
+    4300020: door4
+    4300022: fglass
+    4300024: front bumper
+    4300026: glasframe01
+    4300028: glasframe02
+    4300030: glass frame
+    4300032: glass frame01
+    4300034: glass1
+    4300036: glass2
+    4300038: glass3
+    4300040: glass4
+    4300042: glass5
+    4300044: glass6
+    4300046: glass7
+    4300048: glass8
+    4300050: glassframe
+    4300052: grille
+    4300054: grille2
+    4300056: headlight2
+    4300058: headlight3
+    4300060: headlight4
+    4300062: headlight5
+    4300064: headlight6
+    4300066: headlight7
+    4300068: headlight8
+    4300070: hglass1
+    4300072: hglass2
+    4300074: hglass3
+    4300076: hglass4
+    4300078: hglass5
+    4300080: hglass6
+    4300082: hglass7
+    4300084: hglass9
+    4300086: hood
+    4300088: object03
+    4300090: object04
+    4300092: object1
+    4300094: object2
+    4300096: seat1
+    4300098: steering wheel1
+    4300100: undercar
+    4300102: window cleaner
+    4300104: hglass010
+    4300106: headlight009
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

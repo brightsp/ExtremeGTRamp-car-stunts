@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 36cc5aad9fc7eb846a78bcccecb26538
+timeCreated: 1527510174
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: CGM Locust Resistance
+  fontNames:
+  - CGM Locust Resistance
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

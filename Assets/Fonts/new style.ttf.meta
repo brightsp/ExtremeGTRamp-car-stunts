@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 9d7bfeeb3cf633c479786b039fcd006c
+timeCreated: 1548846698
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Helvetica LT Condensed
+  fontNames:
+  - Helvetica LT Condensed
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
