@@ -105,12 +105,12 @@ namespace RGSK
                 //Record
                 if (racers[i].carController)
                 {
-                    racers[i].vehicleState.Add(new VehicleState(racers[i].racer.position, racers[i].racer.rotation, racers[i].racer.GetComponent<Rigidbody>().velocity, racers[i].racer.GetComponent<Rigidbody>().angularVelocity, racers[i].carController.motorInput, racers[i].carController.brakeInput, racers[i].carController.handbrakeInput, racers[i].carController.steerInput));
+                    racers[i].vehicleState.Add(new VehicleState(racers[i].racer.position, racers[i].racer.rotation, racers[i].racer.GetComponent<Rigidbody>().linearVelocity, racers[i].racer.GetComponent<Rigidbody>().angularVelocity, racers[i].carController.motorInput, racers[i].carController.brakeInput, racers[i].carController.handbrakeInput, racers[i].carController.steerInput));
                 }
 
                 if (racers[i].motorbikeController)
                 {
-                    racers[i].vehicleState.Add(new VehicleState(racers[i].racer.position, racers[i].racer.rotation, racers[i].racer.GetComponent<Rigidbody>().velocity, racers[i].racer.GetComponent<Rigidbody>().angularVelocity, racers[i].motorbikeController.motorInput, racers[i].motorbikeController.brakeInput, 0.0f, racers[i].motorbikeController.steerInput));
+                    racers[i].vehicleState.Add(new VehicleState(racers[i].racer.position, racers[i].racer.rotation, racers[i].racer.GetComponent<Rigidbody>().linearVelocity, racers[i].racer.GetComponent<Rigidbody>().angularVelocity, racers[i].motorbikeController.motorInput, racers[i].motorbikeController.brakeInput, 0.0f, racers[i].motorbikeController.steerInput));
 
                     if (racers[i].motorbikeChassis)
                         racers[i].motorbikeChassisState.Add(new MotorbikeChassisState(racers[i].motorbikeChassis.localRotation));
@@ -275,7 +275,7 @@ namespace RGSK
                 rigid.transform.rotation = Rot;
             }
 
-            rigid.velocity = Vel;
+            rigid.linearVelocity = Vel;
             rigid.angularVelocity = aVel;
 
             rigid.isKinematic = !normalSpeed;

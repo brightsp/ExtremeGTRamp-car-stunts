@@ -22,7 +22,7 @@ public class JsonReader : MonoBehaviour
     // Start is called before the first frame update
     public void StartData()
     {
-        StartCoroutine(DownloadGameData());
+    //    StartCoroutine(DownloadGameData());
 
     }
 
@@ -87,7 +87,7 @@ public class JsonReader : MonoBehaviour
 
                     if (jsonvale[0][i]["mkey"].ToString() == ("isinSale"))
                     {
-                        SKAds.isinSale = jsonvale[0][i]["mvalues"].ToString();
+                        SKAds.isPAID_USER = jsonvale[0][i]["mvalues"].ToString();
                     }
 
 

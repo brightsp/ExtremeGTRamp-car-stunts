@@ -428,9 +428,9 @@ public class RCC_WheelCollider : MonoBehaviour {
 			// If slips are bigger than target value...
 			if (wheelSlipAmountSideways > startSlipValue || wheelSlipAmountForward > startSlipValue * 2f){
 
-				Vector3 skidPoint = GroundHit.point + 2f * (rigid.velocity) * Time.deltaTime;
+				Vector3 skidPoint = GroundHit.point + 2f * (rigid.linearVelocity) * Time.deltaTime;
 
-				if(rigid.velocity.magnitude > 1f){
+				if(rigid.linearVelocity.magnitude > 1f){
 					lastSkidmark = skidmarks.AddSkidMark(skidPoint, GroundHit.normal, (wheelSlipAmountSideways / 2f) + (wheelSlipAmountForward / 2f), lastSkidmark);
 				}else{
 					lastSkidmark = -1;
@@ -613,7 +613,7 @@ public class RCC_WheelCollider : MonoBehaviour {
 	//
 	void Drift(){
 		
-		Vector3 relativeVelocity = transform.InverseTransformDirection(rigid.velocity);
+		Vector3 relativeVelocity = transform.InverseTransformDirection(rigid.linearVelocity);
 		float sqrVel = ((relativeVelocity.x * relativeVelocity.x)) / 100f;
 
 		// Forward
@@ -649,7 +649,7 @@ public class RCC_WheelCollider : MonoBehaviour {
 			if(!audioSource.isPlaying)
 				audioSource.Play();
 
-			if(rigid.velocity.magnitude > 1f){
+			if(rigid.linearVelocity.magnitude > 1f){
 				audioSource.volume = Mathf.Lerp(audioSource.volume, Mathf.Lerp(0f, 1f, totalSlip - startSlipValue), Time.deltaTime * 5f);
 				audioSource.pitch = Mathf.Lerp(1f, .8f, audioSource.volume);
 			}else{

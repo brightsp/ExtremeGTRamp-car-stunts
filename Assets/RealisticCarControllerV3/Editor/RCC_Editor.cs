@@ -53,8 +53,8 @@ public class RCC_Editor : Editor {
 			pivot.AddComponent<RCC_CameraConfig>();
 
 			pivot.GetComponent<Rigidbody>().mass = 1350f;
-			pivot.GetComponent<Rigidbody>().drag = .05f;
-			pivot.GetComponent<Rigidbody>().angularDrag = .5f;
+			pivot.GetComponent<Rigidbody>().linearDamping = .05f;
+			pivot.GetComponent<Rigidbody>().angularDamping = .5f;
 			pivot.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
 
 			Selection.activeGameObject.transform.SetParent (pivot.transform);

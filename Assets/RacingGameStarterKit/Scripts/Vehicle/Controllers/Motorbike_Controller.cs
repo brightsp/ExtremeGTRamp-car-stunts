@@ -122,9 +122,9 @@ namespace RGSK
 
             rigid.constraints = RigidbodyConstraints.FreezeRotationZ;
 
-            rigid.drag = 0.01f;
+            rigid.linearDamping = 0.01f;
 
-            rigid.angularDrag = 0;
+            rigid.angularDamping = 0;
 
             rigid.maxAngularVelocity = 2.0f;
         }
@@ -302,7 +302,7 @@ namespace RGSK
             }
 
             //Decelerate
-            if (motorInput == 0 && brakeInput == 0 && rigid.velocity.magnitude > 1.0f)
+            if (motorInput == 0 && brakeInput == 0 && rigid.linearVelocity.magnitude > 1.0f)
             {
                 if (velocityDir.z >= 0.01f)
                     rigid.AddForce(-transform.forward * 250);
@@ -319,7 +319,7 @@ namespace RGSK
         {
             if (currentSpeed > speedLimit)
             { 
-                rigid.velocity = _speedUnit == SpeedUnit.MPH ? (speedLimit / 2.237f) * rigid.velocity.normalized : (speedLimit / 3.6f) * rigid.velocity.normalized;
+                rigid.linearVelocity = _speedUnit == SpeedUnit.MPH ? (speedLimit / 2.237f) * rigid.linearVelocity.normalized : (speedLimit / 3.6f) * rigid.linearVelocity.normalized;
                 rearWheelCollider.motorTorque = 0;       
             }
         }
@@ -396,7 +396,7 @@ namespace RGSK
             WheelHit wheelHit;
             frontWheelCollider.GetGroundHit(out wheelHit);
 
-            float normalAngle = transform.InverseTransformDirection(rigid.velocity).z > 0f ? -1 : 1;
+            float normalAngle = transform.InverseTransformDirection(rigid.linearVelocity).z > 0f ? -1 : 1;
 
             lean = Mathf.Clamp(Mathf.Lerp(lean, (transform.InverseTransformDirection(rigid.angularVelocity).y * normalAngle) * leanAmount, Time.deltaTime * leanDamping), -maxLeanAngle, maxLeanAngle);
 
@@ -455,7 +455,7 @@ namespace RGSK
 		WheelHit wheelhit;
         void ApplyDownforce()
         {
-            rigid.AddForce(-transform.up * downforce * rigid.velocity.magnitude);
+            rigid.AddForce(-transform.up * downforce * rigid.linearVelocity.magnitude);
         }
 
         void SteerHelper()
@@ -473,7 +473,7 @@ namespace RGSK
             {
                 var turnadjust = (transform.eulerAngles.y - currentRotation) * steerHelper;
                 Quaternion velRotation = Quaternion.AngleAxis(turnadjust, Vector3.up);
-                rigid.velocity = velRotation * rigid.velocity;
+                rigid.linearVelocity = velRotation * rigid.linearVelocity;
             }
 
             currentRotation = transform.eulerAngles.y;
@@ -592,7 +592,7 @@ namespace RGSK
         private float CalculateSpeed()
         {
             //Calculate currentSpeed(MPH)
-            currentSpeed = (_speedUnit == SpeedUnit.MPH) ? rigid.velocity.magnitude * 2.237f : rigid.velocity.magnitude * 3.6f;
+            currentSpeed = (_speedUnit == SpeedUnit.MPH) ? rigid.linearVelocity.magnitude * 2.237f : rigid.linearVelocity.magnitude * 3.6f;
 
             //Round currentSpeed
             currentSpeed = Mathf.Round(currentSpeed);
@@ -603,7 +603,7 @@ namespace RGSK
 
         private Vector3 CalculateVelocityDirection()
         {
-            return transform.InverseTransformDirection(rigid.velocity);
+            return transform.InverseTransformDirection(rigid.linearVelocity);
         }
     }
 }

@@ -109,11 +109,11 @@ namespace RGSK
 
             currentRotationAngle = Mathf.LerpAngle(currentRotationAngle, wantedRotationAngle, Time.deltaTime * rotationDamping);
             currentHeight = Mathf.Lerp(currentHeight, wantedHeight, heightDamping * Time.deltaTime);
-            currentDistance = (distanceBasedOnVelocity) ? Mathf.Lerp(currentDistance, distance + (rigid.velocity.magnitude * distanceMultiplier), distanceZoomSpeed * Time.deltaTime) : Mathf.Lerp(currentDistance, distance, distanceZoomSpeed * Time.deltaTime);
+            currentDistance = (distanceBasedOnVelocity) ? Mathf.Lerp(currentDistance, distance + (rigid.linearVelocity.magnitude * distanceMultiplier), distanceZoomSpeed * Time.deltaTime) : Mathf.Lerp(currentDistance, distance, distanceZoomSpeed * Time.deltaTime);
 
             currentRotation = Quaternion.Euler(0, currentRotationAngle, 0);
 
-            velocityDir = target.InverseTransformDirection(rigid.velocity);
+            velocityDir = target.InverseTransformDirection(rigid.linearVelocity);
 
             if (lookLeft) wantedRotationAngle = target.eulerAngles.y - 90;
             if (lookRight) wantedRotationAngle = target.eulerAngles.y + 90;

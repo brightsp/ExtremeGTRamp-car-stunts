@@ -524,7 +524,7 @@ namespace RGSK
             if (Mathf.Abs(angleDifference) <= 230f && Mathf.Abs(angleDifference) >= 120)
             {
                 //Add/reset the timer
-                if (GetComponent<Rigidbody>().velocity.magnitude >= 5.0f)
+                if (GetComponent<Rigidbody>().linearVelocity.magnitude >= 5.0f)
                 {
                     wrongwayTimer += Time.deltaTime;
                 }

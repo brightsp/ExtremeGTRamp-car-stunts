@@ -174,7 +174,7 @@ public class RCC_Camera : MonoBehaviour{
 		}
 
 		// Speed of the vehicle (smoothed).
-		speed = Mathf.Lerp(speed, playerCar.InverseTransformDirection(playerRigid.velocity).z * 3.6f, Time.deltaTime * 3f);
+		speed = Mathf.Lerp(speed, playerCar.InverseTransformDirection(playerRigid.linearVelocity).z * 3.6f, Time.deltaTime * 3f);
 
 		// Used for sinus FOV effect after hard crashes. 
 		if(index > 0)
@@ -341,7 +341,7 @@ public class RCC_Camera : MonoBehaviour{
 		targetFieldOfView += (5f * Mathf.Cos (1f * index));
 
 		// Rotates camera by Z axis for tilt effect.
-		tiltAngle = Mathf.Lerp(0f, maximumTilt * (int)Mathf.Clamp(-playerCar.InverseTransformDirection(playerRigid.velocity).x, -1f, 1f), Mathf.Abs(playerCar.InverseTransformDirection(playerRigid.velocity).x) / 50f);
+		tiltAngle = Mathf.Lerp(0f, maximumTilt * (int)Mathf.Clamp(-playerCar.InverseTransformDirection(playerRigid.linearVelocity).x, -1f, 1f), Mathf.Abs(playerCar.InverseTransformDirection(playerRigid.linearVelocity).x) / 50f);
 
 		// Calculate the current rotation angles for TPS mode.
 		float wantedRotationAngle = playerCar.eulerAngles.y;

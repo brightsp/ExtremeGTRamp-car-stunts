@@ -55,7 +55,7 @@ namespace RGSK
         {
             if (RaceManager.instance._raceState != RaceManager.RaceState.Racing) return;
 
-            float speed = rigid.velocity.magnitude * 2.237f;
+            float speed = rigid.linearVelocity.magnitude * 2.237f;
 
             if (drifting && speed > minDriftSpeed && !stats.goingWrongway)
             {

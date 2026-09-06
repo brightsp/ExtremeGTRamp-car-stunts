@@ -220,8 +220,13 @@ using UnityEngine.Purchasing;
 			Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
 		}
 
+	public void OnInitializeFailed(InitializationFailureReason error,string msg)
+	{
+		// Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
+		Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
+	}
 
-		public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) 
+	public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) 
 		{
 
 		
@@ -268,9 +273,4 @@ using UnityEngine.Purchasing;
 			// this reason with the user to guide their troubleshooting actions.
 			Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
 		}
-
-    public void OnInitializeFailed(InitializationFailureReason error, string message)
-    {
-        throw new NotImplementedException();
-    }
-}
+	}

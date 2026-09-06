@@ -4,18 +4,38 @@ using UnityEngine;
 
 public class AdTest : MonoBehaviour
 {
-    // Start is called before the first frame update
+    /*    public GameObject Sale_Popup;
+
+        // Start is called before the first frame update
+
+        void Start()
+        {
+            string isProUSer = PlayerPrefs.GetString("pro_USER");
+            Debug.Log("Menu == isProUSer-> " + isProUSer + " ,isinSalePopup-> " + SKAds.isinSalePopup + " ,adsbuyed-> " + PlayerPrefs.GetString("adsbuyed"));
+
+            if (isProUSer == "no" && SKAds.isinSalePopup == "yes" && PlayerPrefs.GetString("adsbuyed") == "no")
+            {
+                Sale_Popup.SetActive(true);
+            }
+        }*/
     public void Menu()
     {
         SKAds.mee.showBannerAd();
+
+
+
+
+
     }
 
     public void LC()
     {
-        SKAds.mee.Show_Ad(SKAds.AddDelay,"LC");
+        UnityAnalyticsManager.instance.CustomEvent(SKAds.complete_anlytics, PlayerPrefs.GetInt("currentLevel"));
+        SKAds.mee.Show_Ad(SKAds.AddDelay, "LC");
     }
     public void LF()
     {
+        UnityAnalyticsManager.instance.CustomEvent(SKAds.fail_anlytics, PlayerPrefs.GetInt("currentLevel"));
         SKAds.mee.Show_Ad(SKAds.AddDelay_lf, "LF");
     }
 
@@ -30,6 +50,6 @@ public class AdTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

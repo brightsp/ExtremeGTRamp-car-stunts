@@ -104,12 +104,12 @@ namespace RGSK
 
             if (carController)
             {
-                vehicleState.Add(new VehicleState(transform.position, transform.rotation, transform.GetComponent<Rigidbody>().velocity, transform.GetComponent<Rigidbody>().angularVelocity, carController.motorInput, carController.brakeInput, carController.handbrakeInput, carController.steerInput));
+                vehicleState.Add(new VehicleState(transform.position, transform.rotation, transform.GetComponent<Rigidbody>().linearVelocity, transform.GetComponent<Rigidbody>().angularVelocity, carController.motorInput, carController.brakeInput, carController.handbrakeInput, carController.steerInput));
             }
 
             if (motorbikeController)
             {
-                vehicleState.Add(new VehicleState(transform.position, transform.rotation, transform.GetComponent<Rigidbody>().velocity, transform.GetComponent<Rigidbody>().angularVelocity, motorbikeController.motorInput, motorbikeController.brakeInput, 0.0f, motorbikeController.steerInput));
+                vehicleState.Add(new VehicleState(transform.position, transform.rotation, transform.GetComponent<Rigidbody>().linearVelocity, transform.GetComponent<Rigidbody>().angularVelocity, motorbikeController.motorInput, motorbikeController.brakeInput, 0.0f, motorbikeController.steerInput));
 
                 if (motorbikeChassis)
                     motorbikeChassisState.Add(new MotorbikeChassisState(motorbikeChassis.localRotation));
@@ -248,7 +248,7 @@ namespace RGSK
                 rigid.transform.rotation = Rot;
             }
 
-            rigid.velocity = Vel;
+            rigid.linearVelocity = Vel;
             rigid.angularVelocity = aVel;
 
             rigid.isKinematic = !normalSpeed;

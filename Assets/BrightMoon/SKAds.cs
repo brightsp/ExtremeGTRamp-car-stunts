@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.XPath;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SKAds : MonoBehaviour
 {
@@ -14,10 +16,13 @@ public class SKAds : MonoBehaviour
     public RewardType_enum CurrentRewardType;
     internal static string addtitle;
     internal static string forceOpen;
-    internal static string isinSale;
+    internal static string isPAID_USER;
+    internal static string isinSalePopup;
     internal static string infomsg;
     internal static string showads;
     internal static string policylink;
+
+    public static string adsBuy_pref = "adsbuyed";
 
     public static string NeedMenuAd { get; internal set; }
     public static Sprite MenuAd_Image { get; internal set; }
@@ -25,11 +30,12 @@ public class SKAds : MonoBehaviour
     public static string MenuAd2Url { get; internal set; }
     public static string NeedBannerAd { get; internal set; }
     public static string NeedRate { get; internal set; }
+    public static string subscribeUrl { get; internal set; }
     public static string Needplaybtn { get; internal set; }
     public static string ProirtyOrder { get; internal set; }
     public static string Reward_ProirtyOrder { get; internal set; }
     public static string DiscPopNums { get; internal set; }
-    public static int RateAtNum { get; internal set; }
+    public static int RateAtNum = 100;
     public float Addtoadddelay { get; internal set; }
     public static float MAddDelay { get; internal set; }
     public static float AddDelay { get; internal set; }
@@ -37,22 +43,24 @@ public class SKAds : MonoBehaviour
     public static float AddDelay_lf { get; internal set; }
     public static string MenuAdImage { get; internal set; }
 
-    public static string admobBanner="yes_tm";
+    public static string admobBanner = "yes_tm";
     public static string ironBanner;
     public static string unityBanner;
 
     public string[] AdType { get; private set; }
-    private string[] _DiscPopAt;
     public string[] Reward_AdType { get; private set; }
-    public List<int> DiscPopAt = new List<int>();
 
+    public static string complete_anlytics = "level_complete";
+    public static string fail_anlytics = "level_fail";
+    public static string start_anlytics = "level_start";
+    public static string noadsOffer_anlytics = "noads_offer";
 
     public enum RewardType_enum
     {
         Coins_reward,
         Health_reward,
         Car_reward,
-        None
+        ResetCar
 
     }
 
@@ -67,58 +75,53 @@ public class SKAds : MonoBehaviour
 
 
     }
-  
+
 
     internal void StartIntilizeAds()
     {
+
+        if (PlayerPrefs.HasKey("Mfrstinstall") == false)
+        {
+            Debug.Log("<-- FirstTime Install --> ");
+
+            PlayerPrefs.SetString("Mfrstinstall", "done");
+            PlayerPrefs.SetString("rated", "false");
+
+            if (isPAID_USER == "yes")
+            {
+                PlayerPrefs.SetString("pro_USER", "yes");
+                PlayerPrefs.SetString(SKAds.adsBuy_pref, "yes");
+            }
+            else
+            {
+                PlayerPrefs.SetString("pro_USER", "no");
+                PlayerPrefs.SetString(SKAds.adsBuy_pref, "no");
+
+            }
+
+        }
+        isProUSer = PlayerPrefs.GetString("pro_USER");
+        Debug.Log("Menu aaa == isProUSer-> " + isProUSer + " ,isinSalePopup-> " + SKAds.isinSalePopup + " ,adsbuyed-> " + PlayerPrefs.GetString("adsbuyed"));
+
+
         Purchaser.mee.InitializePurchasing();
 
         Invoke("CallAfterLoad", 6);
 
     }
 
+
+    private string isProUSer = "no";
     void CallAfterLoad()
     {
         Debug.Log("Afterload");
-        if (isinSale != "yes")
-        {
-            if (PlayerPrefs.HasKey("Mfrstinstall") == false)
-            {
-                // ShowWelocme = true;
-                PlayerPrefs.SetString("Mfrstinstall", "done");
-
-
-            }
-        }
-
-        if (PlayerPrefs.HasKey("adsbuyed") == false)
-        {
-            if (isinSale == "no")
-            {
-                PlayerPrefs.SetString("adsbuyed", "yes");
-            }
-            else
-            {
-                PlayerPrefs.SetString("adsbuyed", "no");
-            }
-
-            PlayerPrefs.SetString("rated", "false");
-        }
-
-        if (PlayerPrefs.HasKey("mode2") == false)
-        {
-            PlayerPrefs.GetString("mode2", "false");
-        }
 
         Debug.Log("@ show daily reawrds");
 
         AdType = ProirtyOrder.Split('_');
-        _DiscPopAt = DiscPopNums.Split('_');
+        // _DiscPopAt = DiscPopNums.Split('_');
         Reward_AdType = Reward_ProirtyOrder.Split('_');
-        for (int i = 0; i < _DiscPopAt.Length; i++)
-        {
-            DiscPopAt.Add(int.Parse(_DiscPopAt[i]));
-        }
+
     }
 
     string Ad_Mpage = "LS";
@@ -145,55 +148,46 @@ public class SKAds : MonoBehaviour
 
     public void CallMyAds()
     {
-        TempCount++;
+        if (Ad_Mpage == "LC")
+        {
+            TempCount++;
+        }
         Debug.Log(Addtoadddelay);
         if (NeedRate == "yes" && TempCount == RateAtNum && PlayerPrefs.GetString("rated") == "false" && Ad_Mpage == "LC")
         {
+
+            RateManager.instance.showRatePopup();
             //MyToast.mee.MyShowToastMethod ("RateAtNum :  "+RateAtNum);
-            PlatformDialog.SetButtonLabel("Yes", "No");
-            PlatformDialog.Show(
-                "Rate US",
-                "Like this game?, Please rate to support future updates!",
-                PlatformDialog.Type.OKCancel,
-                () => {
-                    Debug.Log("Yes");
-                    Application.OpenURL("market://details?id=" + Application.identifier);
-                },
-                () => {
-                    Debug.Log("No");
-                }
-            );
-        }
-        else if (DiscPopAt.Contains(LS_TempCount))
-        {
-            LS_TempCount++;
-            PlatformDialog.SetButtonLabel("Yes", "No");
-            PlatformDialog.Show(
-                "SPECIAL OFFER",
-                "50% OFF DISCOUNT, Unlock All Vehicles!",
-                PlatformDialog.Type.OKCancel,
-                () => {
-                    Debug.Log("Yes");
-                    Purchaser.mee.BuyConsumableItem(0);
-                },
-                () => {
-                    Debug.Log("No");
-                }
-            );
+
+            // RatePopup.SetActive(true);
+            // PlatformDialog.SetButtonLabel("Yes", "No");
+            // PlatformDialog.Show(
+            //     "Rate US",
+            //     "Like this game?, Please rate to support future updates!",
+            //     PlatformDialog.Type.OKCancel,
+            //     () =>
+            //     {
+            //         Debug.Log("Yes");
+            //         Application.OpenURL("market://details?id=" + Application.identifier);
+            //     },
+            //     () =>
+            //     {
+            //         Debug.Log("No");
+            //     }
+            // );
         }
 
-        else if (isinSale == "yes")
+
+        else if (isProUSer == "no")
         {
-            if (showads == "yes" && CanShowAd == true && PlayerPrefs.GetString("adsbuyed") == "no")
+            if (showads == "yes" && CanShowAd == true && PlayerPrefs.GetString(SKAds.adsBuy_pref) == "no")
             {
                 CCount++;
                 Addtoadddelay = MAddDelay;
 
                 CanShowAd = false;
 
-                //Old_setup();
                 ProrityAds();
-                //	MyToast.mee.MyShowToastMethod (TempCount+" inside :  "+CCount);
             }
         }
     }
@@ -212,7 +206,7 @@ public class SKAds : MonoBehaviour
 
                 case "I":
                     Debug.Log("Iron ad");
-                    ADManager.Instance.ShowIronsourceInterstitial();
+                    //   ADManager.Instance.ShowIronsourceInterstitial();
                     break;
 
 
@@ -220,6 +214,8 @@ public class SKAds : MonoBehaviour
                     Debug.Log("Unity ad");
                     ADManager.Instance.ShowUnityInterstitialAd();
                     break;
+
+
             }
         }
         catch (AndroidJavaException e)
@@ -236,30 +232,43 @@ public class SKAds : MonoBehaviour
 
 
     public static int Reward_InPrority = 0;
-   
-    public void ShowReward_order(RewardType_enum R_type)
+
+    public void ShowReward_order(RewardType_enum R_type, Action SuccesReward = null)
     {
         CurrentRewardType = R_type;
+        UnityAction callBackFun = new UnityAction(Resultmanager.mee.VideoReward);
+
+
+        if (SuccesReward == null)
+        {
+            callBackFun = Resultmanager.mee.VideoReward;
+        }
+        else
+        {
+            callBackFun = new UnityAction(SuccesReward);
+        }
+
+
         try
         {
             switch (Reward_AdType[Reward_InPrority])
             {
                 case "A":
                     Debug.Log("Reward Admob ad");
-                    ADManager.Instance.ShowAdmobRewardedVideo(Resultmanager.mee.VideoReward);
+                    ADManager.Instance.ShowAdmobRewardedVideo(callBackFun);// Resultmanager.mee.VideoReward);
                     //Show_Admob_reward(R_type);
                     break;
 
                 case "I":
                     Debug.Log("Reward Iron ad");
-                    ADManager.Instance.ShowIronsourceRewarded(Resultmanager.mee.VideoReward);
+                    //  ADManager.Instance.ShowIronsourceRewarded(Resultmanager.mee.VideoReward);
 
                     break;
 
 
                 case "U":
                     Debug.Log("Reward Unity ad");
-                    ADManager.Instance.ShowUnityRewardedVideo(Resultmanager.mee.VideoReward);
+                    ADManager.Instance.ShowUnityRewardedVideo(callBackFun);// Resultmanager.mee.VideoReward);
 
                     break;
             }
@@ -278,19 +287,19 @@ public class SKAds : MonoBehaviour
 
     public void showBannerAd()
     {
-        if (NeedBannerAd =="yes")
+        if (NeedBannerAd == "yes")
         {
             string[] val = admobBanner.Split('_');
-            if (val[0]=="yes")
+            if (val[0] == "yes")
             {
                 ADManager.Instance.RequestAdmobBanner(val[1]);
             }
 
-             val = ironBanner.Split('_');
-            if (val[0] == "yes")
-            {
-                ADManager.Instance.ShowIronsourceBanner(val[1]);
-            }
+            // val = ironBanner.Split('_');
+            //if (val[0] == "yes")
+            //{
+            //    ADManager.Instance.ShowIronsourceBanner(val[1]);
+            //}
 
             val = unityBanner.Split('_');
             if (val[0] == "yes")

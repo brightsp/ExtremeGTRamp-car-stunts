@@ -251,9 +251,9 @@ public class Camfollow : MonoBehaviour {
 		Targetpos = Targetobj.position;
 		Targetpos-= currentRotation * Vector3.forward * distance;
 		//Debug.Log(Targetpos + " cam target pos" + distance + " camview "+ Camview);
-		if (_Thisrigidobj.velocity.magnitude > 5) 
+		if (_Thisrigidobj.linearVelocity.magnitude > 5) 
 		{
-			Speed = _Thisrigidobj.velocity.magnitude*2;////2
+			Speed = _Thisrigidobj.linearVelocity.magnitude*2;////2
 		} else 
 		{
 			Speed = 50;

@@ -32,4 +32,23 @@ public class ItemPurchaser : MonoBehaviour {
 
 		}
 	}
+
+	public void SUbscribeUrl()
+	{
+			Application.OpenURL(SKAds.subscribeUrl);
+		Invoke(nameof(SUbscribeReward), 2f);
+    }
+
+	void SUbscribeReward()
+	{
+		if (PlayerPrefs.HasKey("urlSubscribe") == false)
+		{
+			PlayerPrefs.SetString("urlSubscribe", "yes");
+			Resultmanager.mee.SubScribECallBack();
+		}
+		else
+		{
+			MyToast.mee.MyShowToastMethod("Already Subscribed");
+        }
+    }
 }

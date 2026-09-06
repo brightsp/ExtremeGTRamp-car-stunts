@@ -134,7 +134,7 @@ public class RCC_Chassis : MonoBehaviour {
 	void LegacyChassis (){
 
 		verticalLean = Mathf.Clamp(Mathf.Lerp (verticalLean, mainRigid.angularVelocity.x * chassisVerticalLean, Time.fixedDeltaTime * 5f), -3f, 3f);
-		horizontalLean = Mathf.Clamp(Mathf.Lerp (horizontalLean, (transform.InverseTransformDirection(mainRigid.angularVelocity).y * (transform.InverseTransformDirection(mainRigid.velocity).z >= 0 ? 1 : -1)) * chassisHorizontalLean, Time.fixedDeltaTime * 5f), -3f, 3f);
+		horizontalLean = Mathf.Clamp(Mathf.Lerp (horizontalLean, (transform.InverseTransformDirection(mainRigid.angularVelocity).y * (transform.InverseTransformDirection(mainRigid.linearVelocity).z >= 0 ? 1 : -1)) * chassisHorizontalLean, Time.fixedDeltaTime * 5f), -3f, 3f);
 
 		if(float.IsNaN(verticalLean) || float.IsNaN(horizontalLean) || float.IsInfinity(verticalLean) || float.IsInfinity(horizontalLean) || Mathf.Approximately(verticalLean, 0f) || Mathf.Approximately(horizontalLean, 0f))
 			return;

@@ -126,9 +126,9 @@ namespace RGSK
 
             rigid.centerOfMass = centerOfMass;
 
-            rigid.drag = 0.01f;
+            rigid.linearDamping = 0.01f;
 
-            rigid.angularDrag = 0;
+            rigid.angularDamping = 0;
         }
 
         void SetupWheels()
@@ -255,7 +255,7 @@ namespace RGSK
                 {
                     case Propulsion.FWD:
 
-                        rigid.velocity = _speedUnit == SpeedUnit.MPH ? (speedLimit / 2.237f) * rigid.velocity.normalized : (speedLimit / 3.6f) * rigid.velocity.normalized;
+                        rigid.linearVelocity = _speedUnit == SpeedUnit.MPH ? (speedLimit / 2.237f) * rigid.linearVelocity.normalized : (speedLimit / 3.6f) * rigid.linearVelocity.normalized;
                         FL_WheelCollider.motorTorque = 0;
                         FR_WheelCollider.motorTorque = 0;
 
@@ -263,7 +263,7 @@ namespace RGSK
 
                     case Propulsion.RWD:
 
-                        rigid.velocity = _speedUnit == SpeedUnit.MPH ? (speedLimit / 2.237f) * rigid.velocity.normalized : (speedLimit / 3.6f) * rigid.velocity.normalized;
+                        rigid.linearVelocity = _speedUnit == SpeedUnit.MPH ? (speedLimit / 2.237f) * rigid.linearVelocity.normalized : (speedLimit / 3.6f) * rigid.linearVelocity.normalized;
                         RL_WheelCollider.motorTorque = 0;
                         RR_WheelCollider.motorTorque = 0;
 
@@ -404,7 +404,7 @@ namespace RGSK
             }
 
             //Decelerate
-            if (motorInput == 0 && brakeInput == 0 && rigid.velocity.magnitude > 1.0f)
+            if (motorInput == 0 && brakeInput == 0 && rigid.linearVelocity.magnitude > 1.0f)
             {
                 if (velocityDir.z >= 0.01f)
                     rigid.AddForce(-transform.forward * 250);
@@ -552,7 +552,7 @@ namespace RGSK
 
         void ApplyDownforce()
         {
-            rigid.AddForce(-transform.up * downforce * rigid.velocity.magnitude);
+            rigid.AddForce(-transform.up * downforce * rigid.linearVelocity.magnitude);
         }
 
 
@@ -592,7 +592,7 @@ namespace RGSK
             {
                 float turnadjust = (transform.eulerAngles.y - currentRotation) * (steerHelper / 2);
                 Quaternion velRotation = Quaternion.AngleAxis(turnadjust, Vector3.up);
-                rigid.velocity = velRotation * rigid.velocity;
+                rigid.linearVelocity = velRotation * rigid.linearVelocity;
             }
 
             currentRotation = transform.eulerAngles.y;
@@ -702,7 +702,7 @@ namespace RGSK
         private float CalculateSpeed()
         {
             //Calculate currentSpeed(MPH)
-            currentSpeed = (_speedUnit == SpeedUnit.MPH) ? rigid.velocity.magnitude * 2.237f : rigid.velocity.magnitude * 3.6f;
+            currentSpeed = (_speedUnit == SpeedUnit.MPH) ? rigid.linearVelocity.magnitude * 2.237f : rigid.linearVelocity.magnitude * 3.6f;
 
             //Round currentSpeed
             currentSpeed = Mathf.Round(currentSpeed);
@@ -713,7 +713,7 @@ namespace RGSK
 
         private Vector3 CalculateVelocityDirection()
         {
-            return transform.InverseTransformDirection(rigid.velocity);
+            return transform.InverseTransformDirection(rigid.linearVelocity);
         }
     }
 }

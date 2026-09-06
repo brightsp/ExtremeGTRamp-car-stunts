@@ -37,7 +37,7 @@ public class Upgradepage : MonoBehaviour
     public static int playingCarNum = 0;
     public int currentvehicle;
     public GameObject Parentobj;
-    public Image Playbtn, Buybtn,WatchBtn, LockImage, Lockbackgrounimg;
+    public Image Playbtn, Buybtn, WatchBtn, LockImage, Lockbackgrounimg;
     public int[] Vehicleprices;
     public Text Costtext;
     public GameObject Loadingset;
@@ -53,7 +53,7 @@ public class Upgradepage : MonoBehaviour
     {
         Obj = this;
 
-        
+
         gameObject.SetActive(false);
 
 
@@ -72,20 +72,20 @@ public class Upgradepage : MonoBehaviour
 
         gameObject.SetActive(true);
         chr = PlayerPrefs.GetString(Menupage.Vehiclesunlocked).ToCharArray();
-        
+
         if (chr[9] == '1')
         {
             currentvehicle = 9;
         }
-                
-        
+
+
         CheckVehicle();
         CheckCash();
 
         Menupage.Obj.Playupgradesound();
 
 #if UNITY_EDITOR
-       // Menupage.UnlockallVehicles();
+        // Menupage.UnlockallVehicles();
 #endif
 
 
@@ -98,7 +98,7 @@ public class Upgradepage : MonoBehaviour
         //    //sr AdManager.instance.RunActions(AdManager.PageType.Upgrade, Levelselection.Currentlevel);
         //}
 
-      
+
 
     }
 
@@ -148,7 +148,7 @@ public class Upgradepage : MonoBehaviour
 
     public void Nextclicked()
     {
-       // Allvehicles[currentvehicle].SetActive(false);
+        // Allvehicles[currentvehicle].SetActive(false);
         StartCoroutine(DisableObj(Allvehicles[currentvehicle]));
         if (currentvehicle < Allvehicles.Length)
         {
@@ -156,7 +156,7 @@ public class Upgradepage : MonoBehaviour
             Debug.Log("car num " + currentvehicle);
 
         }
-        
+
 
 
         CheckVehicle();
@@ -164,7 +164,7 @@ public class Upgradepage : MonoBehaviour
 
     public void Prevclicked()
     {
-       // Allvehicles[currentvehicle].SetActive(false);
+        // Allvehicles[currentvehicle].SetActive(false);
         StartCoroutine(DisableObj(Allvehicles[currentvehicle]));
 
         if (currentvehicle > 0)
@@ -186,8 +186,8 @@ public class Upgradepage : MonoBehaviour
         UnlockWatcObj[0].SetActive(true);
         UnlockWatcObj[1].SetActive(true);
 
-       // iTween.MoveTo(UnlockWatcObj[0].gameObject,iTween.Hash("y",-72,"easetype",iTween.EaseType.linear));
-       // iTween.MoveTo(UnlockWatcObj[1].gameObject,iTween.Hash("y",62,"easetype",iTween.EaseType.linear));
+        // iTween.MoveTo(UnlockWatcObj[0].gameObject,iTween.Hash("y",-72,"easetype",iTween.EaseType.linear));
+        // iTween.MoveTo(UnlockWatcObj[1].gameObject,iTween.Hash("y",62,"easetype",iTween.EaseType.linear));
 
     }
 
@@ -199,8 +199,8 @@ public class Upgradepage : MonoBehaviour
 
         UnlockWatcObj[0].SetActive(false);
         UnlockWatcObj[1].SetActive(false);
-       // iTween.MoveTo(UnlockWatcObj[0].gameObject, iTween.Hash("y", 232, "easetype", iTween.EaseType.linear));
-      //  iTween.MoveTo(UnlockWatcObj[1].gameObject, iTween.Hash("y", -185, "easetype", iTween.EaseType.linear));
+        // iTween.MoveTo(UnlockWatcObj[0].gameObject, iTween.Hash("y", 232, "easetype", iTween.EaseType.linear));
+        //  iTween.MoveTo(UnlockWatcObj[1].gameObject, iTween.Hash("y", -185, "easetype", iTween.EaseType.linear));
 
 
     }
@@ -209,7 +209,7 @@ public class Upgradepage : MonoBehaviour
         Buybtn.enabled = false;
         Playbtn.enabled = false;
         LockImage.enabled = false;
-      
+
         Allvehicles[currentvehicle].SetActive(true);
         Buybtn.GetComponent<Button>().enabled = false;
         //sr  Playbtn.GetComponent<Button>().enabled = false;
@@ -220,20 +220,20 @@ public class Upgradepage : MonoBehaviour
         LockImage.GetComponent<Button>().enabled = false;
         Lockbackgrounimg.gameObject.SetActive(false);
         chr = PlayerPrefs.GetString(Menupage.Vehiclesunlocked).ToCharArray();
-        if (chr.Length<11)
+        if (chr.Length < 11)
         {
             string aa = PlayerPrefs.GetString(Menupage.Vehiclesunlocked);
-           // Debug.Log("before "+aa);
-           //sr aa += "0000000000";
-          //  Debug.Log("after " + aa);
+            // Debug.Log("before "+aa);
+            //sr aa += "0000000000";
+            //  Debug.Log("after " + aa);
 
-            PlayerPrefs.SetString(Menupage.Vehiclesunlocked,aa);
+            PlayerPrefs.SetString(Menupage.Vehiclesunlocked, aa);
             chr = PlayerPrefs.GetString(Menupage.Vehiclesunlocked).ToCharArray();
-            Debug.Log(chr.Length+ " aa-" + aa);
+            Debug.Log(chr.Length + " aa-" + aa);
 
         }
-        Debug.Log("currentvehicle " + currentvehicle );
-    
+        Debug.Log("currentvehicle " + currentvehicle);
+
         if (chr[currentvehicle] == '1')
         {
             Playbtn.enabled = true;
@@ -248,7 +248,7 @@ public class Upgradepage : MonoBehaviour
         }
         else
         {
-            if (currentvehicle==1)
+            if (currentvehicle == 1)
             {
                 WatchBtn.gameObject.SetActive(true);
 
@@ -270,7 +270,7 @@ public class Upgradepage : MonoBehaviour
 
 
             }
-            
+
         }
 
 
@@ -299,7 +299,7 @@ public class Upgradepage : MonoBehaviour
             Prevbtn.gameObject.transform.GetChild(0).gameObject.GetComponent<Button>().interactable = false;
         }
 
-        if (currentvehicle == Allvehicles.Length-1)
+        if (currentvehicle == Allvehicles.Length - 1)
         {
             //Debug.Log("current car -- " + currentvehicle);
             col.a = 0.5f;
@@ -341,19 +341,19 @@ public class Upgradepage : MonoBehaviour
         {
 
             PurchaseSucces();
-            
+
         }
         else
         {
             Debug.Log("btn IAP 2");
 
             Purchaser.mee.BuyConsumableItem(1);
-          
+
 
 
         }
     }
-    public void PurchaseSucces(bool deductcash=true)
+    public void PurchaseSucces(bool deductcash = true)
     {
         if (deductcash)
         {
@@ -416,10 +416,10 @@ public class Upgradepage : MonoBehaviour
         //		Levelselection.Currentlevel=14;
         //		#endif
         SceneManager.LoadSceneAsync("Ingame");// ("FinalScene");
-       // SceneManager.LoadSceneAsync("LvlContainer");
+                                              // SceneManager.LoadSceneAsync("LvlContainer");
 
         //        SceneManager.LoadSceneAsync("LEVEL" + Levelselection.Currentlevel);
-   //sr Debug.Log("--- Level number--- " + Levelselection.Currentlevel);
+        //sr Debug.Log("--- Level number--- " + Levelselection.Currentlevel);
         //MultiPlayerManager_Btm.StartMatch_Btm();//after scene loads..
     }
 

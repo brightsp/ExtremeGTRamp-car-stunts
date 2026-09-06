@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using GameAnalyticsSDK;
+
 
 public class UIcontrols : MonoBehaviour
 {
@@ -68,8 +68,8 @@ public class UIcontrols : MonoBehaviour
 #endif
         //Alllevels[Levelselection.Currentlevel - 1].SetActive(true);
 
-         //   GameObject MlevelObj = Instantiate(Alllevels[Levelselection.Currentlevel - 1].gameObject)as GameObject;
-     //   Invoke("EnableLevel", 1);
+        //   GameObject MlevelObj = Instantiate(Alllevels[Levelselection.Currentlevel - 1].gameObject)as GameObject;
+        //   Invoke("EnableLevel", 1);
         //if (Bikecontrolinputcontrol.Obj)
         //    BikercontrolCanvas = Bikecontrolinputcontrol.Obj.GetComponent<Canvas>();
 
@@ -82,9 +82,9 @@ public class UIcontrols : MonoBehaviour
         //RccCanvas.gameObject.SetActive(false);
         //BikercontrolCanvas.gameObject.SetActive(false);
 
-        
+
     }
-   
+
     void EnableLevel()
     {
 
@@ -95,10 +95,10 @@ public class UIcontrols : MonoBehaviour
         Levelselection.Currentlevel = levelnum;
 
 #endif
-        Debug.Log("lvl "+levelnum);
+        Debug.Log("lvl " + levelnum);
         LevelContainer.mee.AllLevels[levelnum].SetActive(true);
         LevelContainer.mee.playerpos.SetActive(true);
-        
+
         //Debug.Log("comingg......");
         if (Bikecontrolinputcontrol.Obj)
             BikercontrolCanvas = Bikecontrolinputcontrol.Obj.GetComponent<Canvas>();
@@ -106,7 +106,7 @@ public class UIcontrols : MonoBehaviour
         if (Rccvehilceinputcontrol.Obj)
             RccCanvas = Rccvehilceinputcontrol.Obj.GetComponent<Canvas>();
 
-       
+
 
         Loadingset.SetActive(false);
 
@@ -121,11 +121,8 @@ public class UIcontrols : MonoBehaviour
 
         PlayercontrolUI.Obj.StartGame();
 
-        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start,("lvl"+levelnum));
-      //  AdData.mee.loadads();
-        // if ( AdManager.instance)
-        //sr AdManager.instance.RunActions(AdManager.PageType.InGame, Levelselection.Currentlevel, Levelselection.Levelreward);
-       
+        //narj GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start,("lvl"+levelnum));
+
     }
     // Use this for initialization
     void Start()
@@ -136,7 +133,7 @@ public class UIcontrols : MonoBehaviour
 
         // GameObject MlevelObj = Instantiate(Alllevels[Levelselection.Currentlevel - 1].gameObject) as GameObject;
 
-       
+
 
 
     }
@@ -185,7 +182,7 @@ public class UIcontrols : MonoBehaviour
     public void SetFireexplsionnow(Vector3 pos)
     {
         //Fireexplosionobj.SetActive(true);
-       // Fireexplosionobj.transform.position = pos;
+        // Fireexplosionobj.transform.position = pos;
     }
 
 
@@ -249,8 +246,8 @@ public class UIcontrols : MonoBehaviour
 
     public void ShowMenu()
     {
-       // LevelContainer.mee.AllLevels[levelnum].SetActive(false);
-       // LevelContainer.mee.playerpos.SetActive(false);
+        // LevelContainer.mee.AllLevels[levelnum].SetActive(false);
+        // LevelContainer.mee.playerpos.SetActive(false);
 
         Time.timeScale = 1;
         Getoutofcar.SetActive(false);
@@ -294,12 +291,10 @@ public class UIcontrols : MonoBehaviour
         FailBg.gameObject.SetActive(true);
         FailBg.Play();
 
-        // if ( AdManager.instance)
-        //sr AdManager.instance.RunActions(AdManager.PageType.LF, Levelselection.Currentlevel, Levelselection.Levelreward);
 
-        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, ("lvl" + levelnum));
+        //narj GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, ("lvl" + levelnum));
 
-        SKAds.mee.Show_Ad(SKAds.AddDelay_lf);
+        SKAds.mee.Show_Ad(SKAds.AddDelay_lf, "LF");
 
     }
 
@@ -315,7 +310,7 @@ public class UIcontrols : MonoBehaviour
         Showingresumepage = true;
         Resumepage.SetActive(true);
 
-       
+
         //if (AdSetupController.instance)
         //	AdSetupController.instance.RunActions (AdSetupController.PageType.PreLF, Levelselection.Currentlevel, Levelselection.Levelreward);
 
@@ -326,14 +321,14 @@ public class UIcontrols : MonoBehaviour
     public void Showlevelcomplte()
     {
 
-       // LevelContainer.mee.AllLevels[levelnum].SetActive(false);
-       // LevelContainer.mee.playerpos.SetActive(false);
+        // LevelContainer.mee.AllLevels[levelnum].SetActive(false);
+        // LevelContainer.mee.playerpos.SetActive(false);
 
         //		Stopplayeractiviyties ();
         Time.timeScale = 1;
 
         Levelcompleteobj.SetActive(true);
-      
+
         Levelrewadtext.text = Levelselection.Levelreward.ToString();
         Menupage.Addcash(Levelselection.Levelreward);
         Totalavailablerewardtext.text = Menupage.Getcash().ToString();
@@ -342,7 +337,7 @@ public class UIcontrols : MonoBehaviour
         {
             PlayerPrefs.SetInt(Menupage.Levelsunlocked, PlayerPrefs.GetInt(Menupage.Levelsunlocked) + 1);
 
-            if (PlayerPrefs.GetInt(Menupage.Levelsunlocked)==2)
+            if (PlayerPrefs.GetInt(Menupage.Levelsunlocked) == 2)
             {
                 //sr AdManager.CurrenTTime = 10;
 
@@ -365,15 +360,11 @@ public class UIcontrols : MonoBehaviour
 
 
 
-        // //if ( AdManager.instance)
-        //{
-        //    //sr AdManager.instance.RunActions(AdManager.PageType.LC, Levelselection.Currentlevel, Levelselection.Levelreward);
 
-        //}
 
-        SKAds.mee.Show_Ad(SKAds.AddDelay);
+        SKAds.mee.Show_Ad(SKAds.AddDelay, "LC");
 
-        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, ("lvl" + levelnum));
+        //narj GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, ("lvl" + levelnum));
 
     }
 
@@ -424,7 +415,7 @@ public class UIcontrols : MonoBehaviour
 
         //if (AdManager.instance)
         //sr AdManager.instance.RunActions(AdManager.PageType.InGame, Levelselection.Currentlevel, Levelselection.Levelreward);
-      
+
     }
     void Hideresumepage()
     {
@@ -450,7 +441,7 @@ public class UIcontrols : MonoBehaviour
     public void EnableStars(int count)
     {
         Stars[count - 1].SetActive(true);
-       // Staranimator.SetTrigger("Star" + count);
+        // Staranimator.SetTrigger("Star" + count);
     }
     int resetcount = 0;
     public void ResetCar()
@@ -458,14 +449,14 @@ public class UIcontrols : MonoBehaviour
         PlayercontrolUI._CheckVehilceref._RccController.GetComponent<Rigidbody>().isKinematic = true;
         if (Savepointreached)
         {
-           
+
             PlayercontrolUI.Obj.Showcontrols();
-            SKAds.mee.ShowReward_order(SKAds.RewardType_enum.None);
-           // AdData.mee.ShowIronSourceRewardVideo();
+            SKAds.mee.ShowReward_order(SKAds.RewardType_enum.ResetCar);
+            // AdData.mee.ShowIronSourceRewardVideo();
             return;
         }
-        resetcount++ ;
-        if (resetcount %2==0)
+        resetcount++;
+        if (resetcount % 2 == 0)
         {
             PlayercontrolUI.Obj.Showcontrols();
             SKAds.mee.Show_Ad();
@@ -475,8 +466,8 @@ public class UIcontrols : MonoBehaviour
         {
             PlayercontrolUI.Obj.Showcontrols();
         }
-       //sr.. if (PlayercontrolUI._CheckVehilceref._RccController)
-         //   PlayercontrolUI._CheckVehilceref._RccController.ResetCar(true);
+        //sr.. if (PlayercontrolUI._CheckVehilceref._RccController)
+        //   PlayercontrolUI._CheckVehilceref._RccController.ResetCar(true);
     }
     public Text Text_LivesCount;
     public void ShowLivesPage()

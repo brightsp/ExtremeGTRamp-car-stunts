@@ -704,7 +704,7 @@ namespace RGSK
         {
             //Flip the car over and place it at the last passed node
             racer.rotation = Quaternion.LookRotation(racer.forward);
-            racer.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            racer.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
             racer.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             racer.position = new Vector3(node.position.x, node.position.y + 0.1f, node.position.z);
             racer.rotation = node.rotation;

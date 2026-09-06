@@ -972,12 +972,12 @@ public class RCC_CarControllerV3 : MonoBehaviour {
 	void Engine (){
 		
 		//Speed.
-		speed = rigid.velocity.magnitude * 3.6f;
+		speed = rigid.linearVelocity.magnitude * 3.6f;
 
 		//Steer Limit.
 		steerAngle = Mathf.Lerp(orgSteerAngle, highspeedsteerAngle, (speed / highspeedsteerAngleAtspeed));
 
-		if(rigid.velocity.magnitude < .01f && Mathf.Abs(steerInput) < .01f && Mathf.Abs(_gasInput) < .01f && Mathf.Abs(rigid.angularVelocity.magnitude) < .01f)
+		if(rigid.linearVelocity.magnitude < .01f && Mathf.Abs(steerInput) < .01f && Mathf.Abs(_gasInput) < .01f && Mathf.Abs(rigid.angularVelocity.magnitude) < .01f)
 			sleepingRigid = true;
 		else
 			sleepingRigid = false;
@@ -1000,7 +1000,7 @@ public class RCC_CarControllerV3 : MonoBehaviour {
 		}else{
 			if(_brakeInput < .1f && speed < 5)
 				canGoReverseNow = true;
-			else if(_brakeInput > 0 && transform.InverseTransformDirection(rigid.velocity).z > 1f)
+			else if(_brakeInput > 0 && transform.InverseTransformDirection(rigid.linearVelocity).z > 1f)
 				canGoReverseNow = false;
 		}
 		
@@ -1213,7 +1213,7 @@ public class RCC_CarControllerV3 : MonoBehaviour {
 		}
 
 		Vector3 v = rigid.angularVelocity;
-		velocityAngle = (v.y * Mathf.Clamp(transform.InverseTransformDirection(rigid.velocity).z, -1f, 1f)) * Mathf.Rad2Deg;
+		velocityAngle = (v.y * Mathf.Clamp(transform.InverseTransformDirection(rigid.linearVelocity).z, -1f, 1f)) * Mathf.Rad2Deg;
 		velocityDirection.localRotation = Quaternion.Lerp(velocityDirection.localRotation, Quaternion.AngleAxis(Mathf.Clamp(velocityAngle / 3f, -45f, 45f), Vector3.up), Time.fixedDeltaTime * 20f);
 		steeringDirection.localRotation = Quaternion.Euler (0f, FrontLeftWheelCollider.wheelCollider.steerAngle, 0f);
 
@@ -1226,13 +1226,13 @@ public class RCC_CarControllerV3 : MonoBehaviour {
 
 		float angle2 = Quaternion.Angle (velocityDirection.localRotation, steeringDirection.localRotation) * (normalizer);
 
-		rigid.AddRelativeTorque (Vector3.up * ((angle2 * (Mathf.Clamp(transform.InverseTransformDirection(rigid.velocity).z, -10f, 10f) / 500f)) * steerHelperAngularVelStrength), ForceMode.VelocityChange);
+		rigid.AddRelativeTorque (Vector3.up * ((angle2 * (Mathf.Clamp(transform.InverseTransformDirection(rigid.linearVelocity).z, -10f, 10f) / 500f)) * steerHelperAngularVelStrength), ForceMode.VelocityChange);
 
 		if (Mathf.Abs(oldRotation - transform.eulerAngles.y) < 10f){
 			
 			float turnadjust = (transform.eulerAngles.y - oldRotation) * (steerHelperLinearVelStrength / 2f);
 			Quaternion velRotation = Quaternion.AngleAxis(turnadjust, Vector3.up);
-			rigid.velocity = (velRotation * rigid.velocity);
+			rigid.linearVelocity = (velRotation * rigid.linearVelocity);
 
 		}
 
@@ -1242,7 +1242,7 @@ public class RCC_CarControllerV3 : MonoBehaviour {
 
 	void TractionHelper(){
 
-		Vector3 velocity =rigid.velocity;
+		Vector3 velocity =rigid.linearVelocity;
 		velocity -= transform.up * Vector3.Dot(velocity, transform.up);
 		velocity.Normalize();
 
@@ -1309,9 +1309,9 @@ public class RCC_CarControllerV3 : MonoBehaviour {
 
 		//Reversing Bool.
 		if(!AIController){
-			if(brakeInput > .9f  && transform.InverseTransformDirection(rigid.velocity).z < 1f && canGoReverseNow && automaticGear && !semiAutomaticGear && !changingGear && direction != -1)
+			if(brakeInput > .9f  && transform.InverseTransformDirection(rigid.linearVelocity).z < 1f && canGoReverseNow && automaticGear && !semiAutomaticGear && !changingGear && direction != -1)
 				StartCoroutine("ChangingGear", -1);
-			else if(brakeInput < .1f && transform.InverseTransformDirection(rigid.velocity).z > -1f && direction == -1 && !changingGear && automaticGear && !semiAutomaticGear)
+			else if(brakeInput < .1f && transform.InverseTransformDirection(rigid.linearVelocity).z > -1f && direction == -1 && !changingGear && automaticGear && !semiAutomaticGear)
 				StartCoroutine("ChangingGear", 0);
 		}
 

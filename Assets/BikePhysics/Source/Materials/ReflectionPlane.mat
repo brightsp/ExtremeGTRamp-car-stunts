@@ -85,3 +85,4 @@ Material:
     - _SpecColor: {r: 1, g: 1, b: 1, a: 0.941}
     - _TintColor: {r: 0.1981132, g: 0.18035777, b: 0.18035777, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

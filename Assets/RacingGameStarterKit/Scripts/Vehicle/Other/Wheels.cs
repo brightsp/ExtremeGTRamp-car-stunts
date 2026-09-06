@@ -8,7 +8,7 @@ namespace RGSK
         private SurfaceManager surfaceManager;
 
         private Texture2D currentTexture;
-        private PhysicMaterial currentPhysicMaterial;
+        private PhysicsMaterial currentPhysicMaterial;
 
         private WheelCollider wheelCollider;
         private WheelHit wheelHit;
@@ -151,7 +151,7 @@ namespace RGSK
                             //Is the surface type continious
                             if (surfaceManager.physicMaterialSurface[i].surfaceType == SurfaceManager.SurfaceType.OffRoad)
                             {
-                                if (skidAudioSource && wheelCollider.attachedRigidbody.velocity.magnitude > 5.0f) { shouldEmit = true; skidAudioSource.volume = .5f; }
+                                if (skidAudioSource && wheelCollider.attachedRigidbody.linearVelocity.magnitude > 5.0f) { shouldEmit = true; skidAudioSource.volume = .5f; }
                             }
 
                             //Does this surface use skidmarks
@@ -205,7 +205,7 @@ namespace RGSK
                     //Is the surface type continious
                     if (surfaceManager.terrainSurfaceTypes[i].surfaceType == SurfaceManager.SurfaceType.OffRoad)
                     {
-                        if (skidAudioSource && wheelCollider.attachedRigidbody.velocity.magnitude > 5.0f) { shouldEmit = true; skidAudioSource.volume = .5f; }
+                        if (skidAudioSource && wheelCollider.attachedRigidbody.linearVelocity.magnitude > 5.0f) { shouldEmit = true; skidAudioSource.volume = .5f; }
                     }
 
                     //Does this surface use skidmarks
@@ -224,7 +224,7 @@ namespace RGSK
                 if (particleToEmit) particleToEmit.Emit(1);
 
                 //Skidmarks
-                Vector3 skidPoint = wheelHit.point + (wheelCollider.attachedRigidbody.velocity * Time.fixedDeltaTime);
+                Vector3 skidPoint = wheelHit.point + (wheelCollider.attachedRigidbody.linearVelocity * Time.fixedDeltaTime);
 
                 if (skidmarks != null)
                 {

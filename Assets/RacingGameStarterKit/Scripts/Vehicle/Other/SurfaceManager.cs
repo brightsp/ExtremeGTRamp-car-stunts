@@ -25,7 +25,7 @@ namespace RGSK
         {
             public string surfaceName;
             public SurfaceManager.SurfaceType surfaceType;         
-            public PhysicMaterial physicMaterial;
+            public PhysicsMaterial physicMaterial;
             public GameObject skidParticle;
             public AudioClip skidSound;
             public bool allowSkidmark;            

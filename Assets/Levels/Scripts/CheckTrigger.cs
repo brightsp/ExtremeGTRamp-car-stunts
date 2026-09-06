@@ -221,7 +221,7 @@ public class CheckTrigger : MonoBehaviour {
 
 			if (col1.collider.GetComponent<Rigidbody> ())
 			{
-				col1.collider.GetComponent<Rigidbody> ().drag = 0;
+				col1.collider.GetComponent<Rigidbody> ().linearDamping = 0;
 				//col1.collider.GetComponent<Rigidbody> ().AddForce (transform.forward*15, ForceMode.Impulse);
 			}
 
