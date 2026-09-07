@@ -866,7 +866,7 @@ MonoBehaviour:
   - com.gamezilla.cds.unlockcars.discount
   - com.gamezilla.cds.unlockslevels
   - com.gamezilla.cds.unlockslevels.discount
-  - com.gamezilla.cds.coins1pack
+  - com.gamezilla.cds.levelsandcars
   Subscribe_StoreIds: []
   CurrentRewardType: 0
 --- !u!114 &223974228

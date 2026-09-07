@@ -62,10 +62,17 @@ public class UIcontrols : MonoBehaviour
         //		Alllevels [0].SetActive (true);
         //		Levelselection.Currentlevel=0;
 
+        Debug.Log("level active--- Start==> " + Mlevel);
+
 #if UNITY_EDITOR
         if (Mlevel != -1)
             Levelselection.Currentlevel = Mlevel;
 #endif
+
+
+        UnityAnalyticsManager.instance.CustomEvent(SKAds.start_anlytics, Levelselection.Currentlevel);
+
+
         //Alllevels[Levelselection.Currentlevel - 1].SetActive(true);
 
         //   GameObject MlevelObj = Instantiate(Alllevels[Levelselection.Currentlevel - 1].gameObject)as GameObject;
@@ -89,12 +96,10 @@ public class UIcontrols : MonoBehaviour
     {
 
         LoadingObj.SetActive(false);
-#if !UNITY_EDITOR
-        levelnum = Levelselection.Currentlevel - 1;
-#else
-        Levelselection.Currentlevel = levelnum;
+        Debug.Log("level Enable " + levelnum + " ,Currentlevel-> " + Levelselection.Currentlevel);
 
-#endif
+        levelnum = Levelselection.Currentlevel - 1;
+
         Debug.Log("lvl " + levelnum);
         LevelContainer.mee.AllLevels[levelnum].SetActive(true);
         LevelContainer.mee.playerpos.SetActive(true);
@@ -127,7 +132,7 @@ public class UIcontrols : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Debug.LogError("level active----ss");
+        Debug.Log("level active----ss");
         Invoke("EnableLevel", 1f);
 
 
@@ -291,8 +296,9 @@ public class UIcontrols : MonoBehaviour
         FailBg.gameObject.SetActive(true);
         FailBg.Play();
 
-
+        Debug.Log("Failed == " + Levelselection.Currentlevel);
         //narj GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, ("lvl" + levelnum));
+        UnityAnalyticsManager.instance.CustomEvent(SKAds.fail_anlytics, Levelselection.Currentlevel);
 
         SKAds.mee.Show_Ad(SKAds.AddDelay_lf, "LF");
 
@@ -333,6 +339,7 @@ public class UIcontrols : MonoBehaviour
         Menupage.Addcash(Levelselection.Levelreward);
         Totalavailablerewardtext.text = Menupage.Getcash().ToString();
         Text_Totalcoins.text = Menupage.Getcash().ToString();
+
         if (Levelselection.Currentlevel >= PlayerPrefs.GetInt(Menupage.Levelsunlocked))
         {
             PlayerPrefs.SetInt(Menupage.Levelsunlocked, PlayerPrefs.GetInt(Menupage.Levelsunlocked) + 1);
@@ -360,7 +367,7 @@ public class UIcontrols : MonoBehaviour
 
 
 
-
+        UnityAnalyticsManager.instance.CustomEvent(SKAds.complete_anlytics, Levelselection.Currentlevel);
 
         SKAds.mee.Show_Ad(SKAds.AddDelay, "LC");
 

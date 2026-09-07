@@ -11,10 +11,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/Menu.unity
     guid: 720e0bff988a65b4c8c45a37e040c6ae
-  - enabled: 1
+  - enabled: 0
     path: Assets/Levels/Ingame.unity
     guid: 2f8725ad2c9c60a4eb14ec57dc42c6aa
   - enabled: 0
     path: Assets/AllLevels.unity
     guid: 43c0aa24ae1f1234fa2ec122ac5981e5
+  - enabled: 1
+    path: Assets/Levels/Ingame_BC.unity
+    guid: e3aed9200ceecde4ea42b7dcd3c33b1d
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

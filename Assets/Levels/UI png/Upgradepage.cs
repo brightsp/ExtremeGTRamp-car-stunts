@@ -347,7 +347,7 @@ public class Upgradepage : MonoBehaviour
         {
             Debug.Log("btn IAP 2");
 
-            Purchaser.mee.BuyConsumableItem(1);
+            Purchaser.mee.BuyConsumableItem(2);
 
 
 
@@ -415,8 +415,8 @@ public class Upgradepage : MonoBehaviour
         //		#if UNITY_EDITOR
         //		Levelselection.Currentlevel=14;
         //		#endif
-        SceneManager.LoadSceneAsync("Ingame");// ("FinalScene");
-                                              // SceneManager.LoadSceneAsync("LvlContainer");
+        SceneManager.LoadSceneAsync("Ingame_BC");// ("FinalScene");
+                                                 // SceneManager.LoadSceneAsync("LvlContainer");
 
         //        SceneManager.LoadSceneAsync("LEVEL" + Levelselection.Currentlevel);
         //sr Debug.Log("--- Level number--- " + Levelselection.Currentlevel);
