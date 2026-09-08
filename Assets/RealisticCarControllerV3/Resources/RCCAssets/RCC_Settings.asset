@@ -46,8 +46,8 @@ MonoBehaviour:
   useTelemetry: 0
   useAccelerometerForSteering: 0
   useSteeringWheelForSteering: 0
-  UIButtonSensitivity: 5
-  UIButtonGravity: 5
+  UIButtonSensitivity: 25
+  UIButtonGravity: 10
   gyroSensitivity: 2
   useLightsAsVertexLights: 1
   useLightProjectorForLightingEffect: 0
